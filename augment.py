@@ -4,10 +4,11 @@
 import random
 import numpy as np
 import tensorflow as tf
+from tensorflow import keras
 from tensorflow_addons.image import sparse_image_warp
 
 
-class SpecAugment():
+class SpecAugment(): 
     '''
     Augmentation Parameters for policies
     -----------------------------------------
@@ -83,6 +84,7 @@ class SpecAugment():
         for i in range(self.m_F):
             f = int(np.random.uniform(0, self.F)) # [0, F)
             f0 = random.randint(0, v - f) # [0, v - f)
+            self.mel_spectrogram=np.array(self.mel_spectrogram)
             self.mel_spectrogram[:, f0:f0 + f, :, :] = 0
             
         return self.mel_spectrogram
